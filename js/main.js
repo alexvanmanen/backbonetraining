@@ -44,17 +44,31 @@ var Todos = Backbone.Collection.extend({
     model: Todo
 });
 
-var todos = new Todos();
-todos.fetch({
-    success: function () {
-        todos.forEach(function (todo) {
-            console.log(todo.get("title"));
-        })
-    },
-    error: () => console.log("ging mis")
-});
+// var todos = new Todos();
+// todos.fetch({
+//     success: function () {
+//         todos.forEach(function (todo) {
+//             console.log(todo.get("title"));
+//         })
+//     },
+//     error: () => console.log("ging mis")
+// });
 
-todos.fetch().then(
-    mijnTodos => mijnTodos.forEach(todo =>console.log(todo.title)),
-    reason => console.log("ging fout, omdat " + reason.status)
+// todos.fetch().then(
+//     mijnTodos => mijnTodos.forEach(todo =>console.log(todo.title)),
+//     reason => console.log("ging fout, omdat " + reason.status)
+// );
+
+var TodoView = Backbone.View.extend({
+        tagName: "div",
+        render: function () {
+            //document.getElementById("todo").innerHTML="sdjkdsfjkl";
+            //$("#todo").html("sdfjkdfsjk");
+            this.$el.html('test');
+            return this;
+        }
+    }
 );
+
+let todoView = new TodoView();
+$('#todo').html(todoView.render().$el);
