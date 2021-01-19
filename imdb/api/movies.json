@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Guardians of the Galaxy",
+        "Rating": 5,
+        "Genre": "Action, Adventure, Comedy"
+    },
+    {
+        "id": 2,
+        "title": "Reservoir Dogs",
+        "Rating": 5,
+        "Genre": "Crime, Drama, Thriller"
+    },
+    {
+        "id": 3,
+        "title": "Back to the future",
+        "Rating": 4,
+        "Genre": "Crime, Drama, Thriller"
+    }
+]
