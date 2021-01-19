@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "title": "Guardians of the Galaxy",
+    "Rating": 4,
+    "Genre": "Action, Adventure, Comedy"
+  },
+  {
+    "id": 2,
+    "title": "Reservoir Dogs",
+    "Rating": 5,
+    "Genre": "Crime, Drama, Thriller",
+    "Director": "Quentin Tarentino"
+  },
+  {
+    "id": 3,
+    "title": "Back To The Future",
+    "Rating": 3,
+    "Genre": "Action, Adventure, Comedy"
+  }
+]
