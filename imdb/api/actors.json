@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Alex van Manen",
+        "location": "Spitsbergen",
+        "playsIn": [3]
+    },
+    {
+        "id": 2,
+        "name": "acteur 2",
+        "location": "US",
+        "playsIn": [1]
+    },
+    {
+        "id": 3,
+        "name": "acteur 3",
+        "location": "NL",
+        "playsIn": [1,2]
+    }
+]

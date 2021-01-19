@@ -1,8 +1,4 @@
-let ActorsView = Backbone.View.extend({
-    render: function () {
-        this.$el.html('ActorsView');
-    }
-});
+
 let MovieCollectionView = Backbone.View.extend({
     render: function () {
         let self = this;
@@ -12,11 +8,39 @@ let MovieCollectionView = Backbone.View.extend({
         });
     }
 });
+let ActorCollectionView = Backbone.View.extend({
+    render: function () {
+        let self = this;
+        this.model.each(function(actor) {
+            let actorView = new ActorView({model: actor});
+            self.$el.append(actorView.render().$el)
+        });
+    }
+});
 let MovieView = Backbone.View.extend({
     render: function () {
         this.$el.html('<strong>'+this.model.get("title")+ '</strong><br>' + this.model.get("Rating") + '\/5' );
         return this;
     }
+});
+let ActorView = Backbone.View.extend({
+    render: function () {
+        console.log(this.model);
+        this.$el.html('<strong>'+this.model.get("name")+ '</strong><br>' + this.model.get("location") + this.playsIn());
+        return this;
+    },
+    playsIn: async function (){
+        let movieCollection = new Movies();
+
+            let henk = await movieCollection.fetch();
+        console.log(henk);
+            let movies = '';
+            this.model.get('playsIn').forEach(function (id){
+                movies +=  movieCollection.findWhere({'id':  id });
+                return  movieCollection.findWhere({'id':  3 });;
+            })
+        }
+
 });
 
 let GenresView = Backbone.View.extend({
@@ -30,20 +54,23 @@ let NotFoundView = Backbone.View.extend({
     }
 });
 let Movie = Backbone.Model.extend({})
+let Actor = Backbone.Model.extend({})
 let Movies = Backbone.Collection.extend({
     model: Movie,
     url: 'imdb/api/movies.json'
 })
+let Actors = Backbone.Collection.extend({
+    model: Actor,
+    url: 'imdb/api/actors.json'
+})
 
 let movieCollection = new Movies();
+let actorCollection = new Actors();
 
 
 
-movieCollection.fetch({success:x });
-function x() {
-    console.log(movieCollection.where({'id': 1}));
-}
-
+actorCollection.fetch();
+movieCollection.fetch();
 
 
 let AppRouter = Backbone.Router.extend({
@@ -53,12 +80,17 @@ let AppRouter = Backbone.Router.extend({
         'genres': 'viewGenres',
         '*other': 'defaultRouter',
     },
+    clear: function (){
+        $('#container').html('');
+    },
     viewActors: function() {
-        let view = new ActorsView({el: '#container'});
+        let view = new ActorCollectionView({el: '#container', model:actorCollection});
+        this.clear();
         view.render();
     },
     viewMovies: function() {
         let view = new MovieCollectionView({el: '#container', model:movieCollection});
+        this.clear();
         view.render();
     },
     // movieView: function() {
