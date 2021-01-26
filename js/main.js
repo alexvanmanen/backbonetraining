@@ -1,13 +1,11 @@
-
-const Person = Backbone.Model.extend({});
-const PersonView = Backbone.View.extend({
-    render: function() {
-        this.$el.html(this.model.get("name"));
-        return this;
+require.config({
+    paths: {
+        jquery: 'lib/jquery',
+        underscore: 'lib/underscore',
+        backbone: 'lib/backbone'
     }
+})
+define(['app'], function (App) {
+    App.initialize();
 });
-
-let person = new Person({name: "Alex"})
-let personView = new PersonView({ el:"#container", model: person});
-personView.render();
 
